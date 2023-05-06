@@ -5,8 +5,10 @@ import * as _ from 'lodash';
 export default class Url {
     public static parseParams(str: string) {
         return str.split('&').reduce((result, current) => {
-            const arr = current.split('=');
-            result[arr[0]] = arr[1];
+            const equalIndex = current.indexOf('=');
+            const key = current.substring(0, equalIndex);
+            const value = current.substring(equalIndex + 1);
+            result[key] = decodeURIComponent(value);
             return result;
         }, {});
     }

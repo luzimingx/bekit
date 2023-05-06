@@ -10,10 +10,10 @@ Vue.use(bekit.plugin.vueNotice, {
     iconClass: 'bicon'
   },
   alert: {
-    confirmButtonText: '好'
+    confirmButtonText: 'Yes'
   },
   confirm: {
-    cancelButtonText: '不要了'
+    cancelButtonText: 'No'
   }
 });
 // 引入业务样式 这些是需要在项目中手写的
@@ -32,11 +32,8 @@ new Vue({
   },
   methods: {
     url: function () {
-      let href = 'https://google.com?a=a&b=b#hh';
-      let url = new Url(href);
-      console.log(url.hash);
-      url.replaceHash('sss').removeHash();
-      console.log(url.hash, url.toString());
+      let url = new Url('https://www.google.com/index?id=abc#hash');
+      console.log(url);
     },
     ls: function () {
       window.ls = new bekit.helper.Ls();
@@ -44,7 +41,7 @@ new Vue({
     notice: function () {
       var _this = this;
       this.$confirm('some message', 'title', {
-        confirmButtonText: '好的'
+        confirmButtonText: 'Yes'
       }).then(function (data) {
         console.log(data);
         _this.$toast({
